@@ -106,6 +106,12 @@ class PostController extends Controller
     public function edit($id)
     {
         //
+        return view(
+            'testposts.edit' , 
+            [
+                'post' => DataPost::findOrFail($id)
+            ]
+        );
     }
 
     /**
@@ -118,6 +124,18 @@ class PostController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $post = DataPost::findOrFail($id);
+        // echo '<pre>';
+        // print_r($post);
+        // exit;
+        $post->title = $request->input('title');
+        $post->content = $request->input('content');
+        $post->save();
+
+        notify()->success('Data Updated');
+
+        return redirect()->route('testposts.edit', ['testpost' => $post->id]);
+
     }
 
     /**

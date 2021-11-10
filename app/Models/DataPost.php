@@ -10,5 +10,8 @@ class DataPost extends Model
 
     // can use php artisan tinker for up the models
     // $post = new App\Models\DataPost
+    // protected $fillable = [
+
+    // ];
     use HasFactory;
 }
