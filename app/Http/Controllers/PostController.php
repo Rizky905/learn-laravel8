@@ -52,6 +52,37 @@ class PostController extends Controller
     public function store(Request $request)
     {
         //
+        // dd($request);
+        // echo '<pre>';
+        // print_r($request->toArray());
+        // exit;
+        // if(!empty($request['title'])){
+        //     echo 'ada';
+        // }
+        // if(empty($request['title'])){            
+        //     echo 'kosong';
+
+        // }
+        // exit;
+
+        $request->validate([
+            'title' => 'required|min:5|max:20',
+            'content' => 'required|min:5|max:600',
+        ]);
+        if(!empty($request['title'])){
+            $post = new DataPost();
+            $post->title = $request->input('title');
+            $post->content = $request->input('content');
+            $post->save();
+            
+            notify()->success('Data Added');
+        }
+        if(empty($request['title'])){
+            notify()->success('Data Added');
+        }
+
+        return redirect()->route('testposts.create');
+
     }
 
     /**
