@@ -71,6 +71,6 @@ Route::get('/about', AboutController::class);
 
 // CRUD Controller or Controller Resource
 // php artisan make:controller PostController --resource
-Route::resource('testposts', PostController::class)->only(['index', 'show']);
+Route::resource('testposts', PostController::class)->only(['index', 'show', 'create', 'store']);
 
 
