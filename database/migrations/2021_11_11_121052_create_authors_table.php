@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDataPostsTable extends Migration
+class CreateAuthorsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateDataPostsTable extends Migration
      */
     public function up()
     {
-        Schema::create('data_posts', function (Blueprint $table) {
-            $table->string('title')->default('');
-            $table->text('content')->default('');
+        Schema::create('authors', function (Blueprint $table) {
+            $table->id();
+            $table->timestamps();
         });
     }
 
@@ -26,6 +26,6 @@ class CreateDataPostsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('data_posts');
+        Schema::dropIfExists('authors');
     }
 }
