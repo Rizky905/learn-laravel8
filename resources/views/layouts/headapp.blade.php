@@ -1,76 +1,58 @@
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-<div class="flex flex-wrap items-center">
-    <div class="flex flex-shrink md:w-1/3 justify-center md:justify-start text-white">
-        <a href="#">
-            <span class="text-xl pl-2"><i class="em em-grinning"></i></span>
+<header class="relative bg-white dark:bg-darker">
+    <div class="flex items-center justify-between p-2 border-b dark:border-blue-800">
+         <!-- Brand -->
+        <a href="#"
+                class="inline-block text-2xl font-bold tracking-wider text-red-400 uppercase dark:text-light"
+                >
+                Laravel Learn
         </a>
-    </div>
-    <div class="flex flex-1 md:w-1/3 justify-center md:justify-start text-white px-2">
-        <span class="relative w-full">
-            <input type="search" placeholder="Search" class="w-full bg-gray-900 text-white transition border border-transparent focus:outline-none focus:border-gray-400 rounded py-3 px-2 pl-10 appearance-none leading-normal">
-                <div class="absolute search-icon" style="top: 1rem; left: .8rem;">
-                    <svg class="fill-current pointer-events-none text-white w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                        <path d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"></path>
-                    </svg>
-            </div>
-        </span>
-    </div>
-    <div class="flex w-full pt-2 content-center justify-between md:w-1/3 md:justify-end">
-        <ul class="list-reset flex justify-between flex-1 md:flex-none items-center">
-            <li class="flex-1 md:flex-none md:mr-3">
-                <a class="inline-block py-2 px-4 text-white no-underline" href="#">Active</a>
-            </li>
-            <li class="flex-1 md:flex-none md:mr-3">
-                <a class="inline-block text-gray-600 no-underline hover:text-gray-200 hover:text-underline py-2 px-4" href="#">link</a>
-            </li>
-            <li class="flex-1 md:flex-none md:mr-3">
-                <div class="relative inline-block">
-                    <button onclick="toggleDD('myDropdown')" class="drop-button text-white focus:outline-none"> 
-                        <span class="pr-2">
-                            <i class="em em-robot_face"></i>
-                        </span> Hi, User 
-                        <svg class="h-3 fill-current inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                        </svg>
-                    </button>
-                    <div id="myDropdown" class="dropdownlist absolute bg-gray-800 text-white right-0 mt-3 p-3 overflow-auto z-30 invisible">
-                        <input type="text" class="drop-search p-2 text-gray-600" placeholder="Search.." id="myInput" onkeyup="filterDD('myDropdown','myInput')">
-                        <a href="#" class="p-2 hover:bg-gray-800 text-white text-sm no-underline hover:no-underline block"><i class="fa fa-user fa-fw"></i> Profile</a>
-                        <a href="#" class="p-2 hover:bg-gray-800 text-white text-sm no-underline hover:no-underline block"><i class="fa fa-cog fa-fw"></i> Settings</a>
-                    <div class="border border-gray-800">
-                    </div>
-                        <a href="#" class="p-2 hover:bg-gray-800 text-white text-sm no-underline hover:no-underline block"><i class="fas fa-sign-out-alt fa-fw"></i> Log Out</a>
-                    </div>
-                    </div>
-                    </li>
-                    </ul>
-                </div>
+        <!-- User avatar button -->
+        <div class="relative z-40" x-data="{ open: false }">
+            <button
+                    @click="open = !open; $nextTick(() => { if(open){ $refs.userMenu.focus() } })"
+                        type="button"
+                        aria-haspopup="true"
+                        :aria-expanded="open ? 'true' : 'false'"
+                        class="transition-opacity duration-200 rounded-full dark:opacity-75 dark:hover:opacity-100 focus:outline-none focus:ring dark:focus:opacity-100"
+                    >
+                    <span class="sr-only">User menu</span>
+                    <img class="w-14 h-14 rounded-full" src="https://external-preview.redd.it/cP4D8gGpqH9-L6R7FID6FWmIzm0xyOFzu6amsiZ6BJU.jpg?auto=webp&s=267d33b568bf63b891c2a037c0c3c20ab0b7ca64" alt="Ahmed Kamel" />
+            </button>
+                <!-- User dropdown menu -->
+            <div x-show="open"
+                x-ref="userMenu"
+                x-transition:enter="transition-all transform ease-out"
+                x-transition:enter-start="translate-y-1/2 opacity-0"
+                x-transition:enter-end="translate-y-0 opacity-100"
+                x-transition:leave="transition-all transform ease-in"
+                x-transition:leave-start="translate-y-0 opacity-100"
+                x-transition:leave-end="translate-y-1/2 opacity-0"
+                @click.away="open = false"
+                @keydown.escape="open = false"
+                class="absolute right-0 w-48 py-1 bg-white rounded-md shadow-lg top-12 ring-1 ring-black ring-opacity-5 dark:bg-dark focus:outline-none"
+                tabindex="-1"
+                role="menu"
+                                aria-orientation="vertical"
+                                aria-label="User menu"
+                            >
+                            <a href="#"
+                                role="menuitem"
+                                class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-blue-600"
+                                >
+                                Your Profile
+                            </a>
+                            <a href="#"
+                                role="menuitem"
+                                class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-blue-600"
+                                >
+                                Settings
+                            </a>
+                            <a href="#"
+                                role="menuitem"
+                                class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-blue-600"
+                                >
+                                Logout
+                            </a>
         </div>
-</body>
-<script>
-    function toggleDD(myDropMenu) {
-        document.getElementById(myDropMenu).classList.toggle("invisible");
-    }
-    // Close the dropdown menu if the user clicks outside of it
-    window.onclick = function(event) {
-        if (!event.target.matches('.drop-button') && !event.target.matches('.drop-search')) {
-            var dropdowns = document.getElementsByClassName("dropdownlist");
-            for (var i = 0; i < dropdowns.length; i++) {
-                var openDropdown = dropdowns[i];
-                if (!openDropdown.classList.contains('invisible')) {
-                    openDropdown.classList.add('invisible');
-                }
-            }
-        }
-    }
-</script>
-</html>
+    </div>
+</header>

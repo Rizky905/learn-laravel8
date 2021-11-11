@@ -1,28 +1,76 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-<div class="bg-gray-800 shadow-xl h-16 fixed bottom-0 mt-12 md:relative md:h-screen z-10 w-full md:w-48">
-      <!-- <a class="block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 bg-gray-200 rounded-lg dark-mode:bg-gray-700 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="/">
-        test 1
-      </a> -->
-      <a class="block px-4 py-2 mt-2 text-sm font-semibold text-white bg-transparent dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="/testposts">
-        Post Data Test
-      </a>
-      <a class="block px-4 py-2 mt-2 text-sm font-semibold text-white bg-transparent dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="/info">
-        test 2
-      </a>
-      <a class="block px-4 py-2 mt-2 text-sm font-semibold text-white bg-transparent dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="/">
-        test 3
-      </a>
-      <a class="block px-4 py-2 mt-2 text-sm font-semibold text-white bg-transparent dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="/">
-        test 4
-      </a>
-</div>
-</body>
-</html>
+            <!-- Sidebar -->
+            <aside class="flex-shrink-0 hidden w-64 bg-white border-r dark:border-blue-800 dark:bg-darker md:block">
+                <div class="flex flex-col h-full">
+                    <!-- Sidebar links -->
+                    <nav aria-label="Main" class="flex-1 px-2 py-4 space-y-2 overflow-y-hidden hover:overflow-y-auto">
+                        <!-- Dashboards links -->
+                        <div x-data="{ isActive: false, open: false}">
+                            <!-- active & hover classes 'bg-blue-100 dark:bg-blue-600' -->
+                            <a
+                                href="#"
+                                @click="$event.preventDefault(); open = !open"
+                                class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-blue-100 dark:hover:bg-blue-600"
+                                :class="{'bg-blue-100 dark:bg-blue-600': isActive || open}"
+                                role="button"
+                                aria-haspopup="true"
+                                :aria-expanded="(open || isActive) ? 'true' : 'false'"
+                            >
+                            <span aria-hidden="true">
+                                <svg
+                                    class="w-5 h-5"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+                                    />
+                                </svg>
+                            </span>
+                            <span class="ml-2 text-sm"> Dashboards </span>
+                            <span class="ml-auto" aria-hidden="true">
+                                <!-- active class 'rotate-180' -->
+                                <svg
+                                    class="w-4 h-4 transition-transform transform"
+                                    :class="{ 'rotate-180': open }"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                    >
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </span>
+                            </a>
+                            <div role="menu" x-show="open" class="mt-2 space-y-2 px-7" aria-label="Dashboards">
+                            <!-- active & hover classes 'text-gray-700 dark:text-light' -->
+                            <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
+                            <a
+                                href="/testposts"
+                                role="menuitem"
+                                class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700"
+                            >
+                                Post Data
+                            </a>
+                            <a
+                                href="#"
+                                role="menuitem"
+                                class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
+                            >
+                                Project Mangement
+                            </a>
+                            <a
+                                href="#"
+                                role="menuitem"
+                                class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
+                                >
+                                E-Commerce
+                            </a>
+                        </div>
+                    </nav>
+                </div>
+            </aside>

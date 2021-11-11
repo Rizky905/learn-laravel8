@@ -147,5 +147,11 @@ class PostController extends Controller
     public function destroy($id)
     {
         //
+        $post = DataPost::findOrFail($id);
+        $post->delete();
+
+        notify()->success('data deleted');
+
+        return redirect()->route('testposts.index');
     }
 }
