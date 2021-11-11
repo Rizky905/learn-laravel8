@@ -75,5 +75,6 @@ Route::get('/about', AboutController::class);
 // Route::resource('/testposts', PostController::class)->only(
 //     ['index', 'show', 'create', 'store', 'update', 'edit', 'destroy']
 // );
+
 Route::resource('/testposts', PostController::class);
 

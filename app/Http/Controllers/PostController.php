@@ -149,9 +149,7 @@ class PostController extends Controller
         //
         $post = DataPost::findOrFail($id);
         $post->delete();
-
-        notify()->success('data deleted');
-
-        return redirect()->route('testposts.index');
+        // return redirect()->route('testposts.index');
+        return redirect()->route('testposts.index')->with('success','User deleted successfully');
     }
 }

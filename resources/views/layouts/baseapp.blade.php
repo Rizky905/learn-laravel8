@@ -20,8 +20,10 @@
         </div>
     </div>
 </body>
-<script src="https://cdn.jsdelivr.net/gh/alpine-collective/alpine-magic-helpers@0.6.x/dist/component.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.0/dist/alpine.min.js" defer></script>
-<script>
-</script>
+
+<script src="{{ asset('js/sweetalert2.all.min.js') }}"></script>
+<script src="{{ asset('js/alpine.min.js') }}"></script>
+<script src="{{ asset('js/component.min.js') }}"></script>
+<script src="{{ asset('js/jquery.min.js') }}"></script>
+@yield('customjs')
 </html>
