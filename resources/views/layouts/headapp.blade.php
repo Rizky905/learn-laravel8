@@ -1,7 +1,7 @@
 <header class="relative bg-white dark:bg-darker">
     <div class="flex items-center justify-between p-2 border-b dark:border-blue-800">
          <!-- Brand -->
-        <a href="#"
+        <a href="/"
                 class="inline-block text-2xl font-bold tracking-wider text-red-400 uppercase dark:text-light"
                 >
                 Laravel Learn

@@ -20,6 +20,7 @@ use App\Http\Controllers\PostController;
 |
 */
 
+// basic routing
 Route::get('/', function () {
     return view('welcome');
 });
@@ -41,6 +42,22 @@ Route::get('/test/response', function() use($post){
         ->cookie('MY_COOKIE', 'TEST', 3600);
 });
 
+// routing parameter
+Route::get('/test/{id}', function($id){
+    return 'blog test '. $id; 
+})
+// dipindah ke RouteServiceProvider -> boot
+// ->where(
+//     [
+//         'id' => '[0-9]+'
+//     ]
+// )
+->name('post.show');
+
+// Route::get('/test/{days_ago?}', function($daysAgo = 20){
+//     return 'post form '. $daysAgo; 
+// });
+ 
 
 //grouping routes
 Route::prefix('/test')->name('test.')->group(function() use($post){
@@ -51,6 +68,14 @@ Route::prefix('/test')->name('test.')->group(function() use($post){
     Route::get('/download', function() use($post){
         return response()->download(public_path('/photo/aimer-night-world.png'));
     })->name('download');
+});
+
+//request input
+Route::get('/posts', function() use ($post){
+    //dd (dump data)
+    dd(request()->all());
+    dd(request()->input('page',1));
+    return view('posts.index', ['post' => $post]);
 });
 
 
